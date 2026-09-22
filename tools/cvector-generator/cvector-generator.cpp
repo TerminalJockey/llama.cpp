@@ -20,6 +20,7 @@
 
 #include <algorithm>
 #include <climits>
+#include <cmath>
 #include <cstdio>
 #include <cstring>
 #include <fstream>
@@ -121,7 +122,7 @@ struct callback_data {
             // check if given row containing all zero elements
             int n_cols = t->ne[0]; // hint: should be equal to n_embd
             for (int col = 0; col < n_cols; ++col) {
-                if (ggml_get_f32_nd(t, col, row, 0, 0) > eps) {
+                if (fabs(ggml_get_f32_nd(t, col, row, 0, 0)) > eps) {
                     return false;
                 }
             }
